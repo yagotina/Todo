@@ -1,24 +1,44 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import AddTodo from './components/AddTodo';
+import TodoList from './components/TodoList';
+import Context from './context';
 
 function App() {
+const [todos, setTodos] = React.useState([
+  { id: 1, title: 'buy milk', completed: false },
+  { id: 2, title: 'buy bread', completed: true },
+  { id: 3, title: 'buy eggs', completed: false },
+]);
+
+  function toggleList(id) {
+    setTodos(
+      todos.map(todo => {
+        if(todo.id === id) todo.completed = !todo.completed;
+        return todo;
+      })
+    )
+  };
+
+  function deleteItem(id) {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
+  function addItem() {
+    const newId = (todos[todos.length-1]?.id || 0) + 1;
+    const newTodo = document.getElementById('newTodo').value;
+
+    setTodos([...todos, { id: newId, title: newTodo, completed: false }]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Context.Provider value={{ toggleList, deleteItem, addItem }}>
+      <div className="wrapp">
+        <h1 className='title'>Todo List</h1>
+        <AddTodo />
+        {todos.length ? <TodoList todos={todos} /> : <p>List is empty!</p>}
+      </div>
+    </Context.Provider>
   );
 }
 

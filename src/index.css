@@ -11,3 +11,59 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.wrapp {
+  width: 800px;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+.title {
+  text-align: center;
+}
+
+.list {
+  padding: 20px;
+  border: 1px solid #cacaca;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+.btn-dlt, .add-todo__btn {
+  height: 40px;
+  background: red;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.btn-dlt {
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-todo {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.add-todo__input {
+  border-radius: 10px;
+  border: 1px solid #cacaca;
+  flex-grow: 1;
+}
+
+.add-todo__btn {
+  width: 150px;
+}
